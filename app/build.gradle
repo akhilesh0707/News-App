@@ -23,6 +23,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -94,4 +99,13 @@ dependencies {
     // Pagination
     def pagination_version = "1.0.1"
     implementation "android.arch.paging:runtime:$pagination_version"
+
+    // Robolectric
+    def robolectric_version = "4.3"
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
+
+    // Mockito framework
+    def mockito_version = "2.6.3"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+
 }

@@ -15,12 +15,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img_news_banner"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="fitXY"
-            tools:src="@drawable/ic_launcher_foreground" />
+            android:layout_height="@dimen/news_img_height">
+
+            <ImageView
+                android:id="@+id/img_news_banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                tools:src="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/text_view_source"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorBlackTransparent"
+                android:padding="@dimen/padding_2"
+                android:paddingStart="@dimen/padding_12"
+                android:paddingEnd="@dimen/padding_2"
+                android:paddingBottom="@dimen/padding_2"
+                android:textColor="@color/colorWhite"
+                tools:text="Source: Hindustan times" />
+
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/txt_news_name"
@@ -28,9 +47,12 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            android:padding="12dp"
+            android:paddingStart="@dimen/padding_12"
+            android:paddingTop="@dimen/padding_8"
+            android:paddingEnd="@dimen/padding_12"
+            android:paddingBottom="@dimen/padding_8"
             android:textColor="@color/colorTitle"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_16"
             tools:text="Sample news title" />
 
     </LinearLayout>

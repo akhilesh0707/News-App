@@ -39,12 +39,18 @@ class NewsListActivity : BaseActivity() {
         initState()
     }
 
-    private fun setupToolBar(){
+    /**
+     * Setting up the toolbar
+     */
+    private fun setupToolBar() {
         val toolBar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolBar)
         supportActionBar?.title = getString(R.string.app_name)
     }
 
+    /**
+     * Setting up the Adapter and RecyclerView
+     */
     private fun initAdapter() {
         newsListAdapter = NewsListAdapter(requestManager) { news: News -> itemClicked(news) }
         recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -54,6 +60,9 @@ class NewsListActivity : BaseActivity() {
         })
     }
 
+    /**
+     * Checking the loading status and according the loading status showing ProgressBar
+     */
     private fun initState() {
         viewModel.getState().observe(this, Observer { networkState ->
             if (networkState != null && networkState.status === NetworkState.Status.RUNNING) {
@@ -64,6 +73,10 @@ class NewsListActivity : BaseActivity() {
         })
     }
 
+    /**
+     * RecyclerView item click listener and start a NewsDetailActivity
+     * @param news : News selected
+     */
     private fun itemClicked(news: News) {
         val intent = Intent(this@NewsListActivity, NewsDetailActivity::class.java)
         intent.putExtra(NEWS_URL, news.url)

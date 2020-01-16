@@ -15,6 +15,7 @@ import javax.inject.Inject
 
 
 class NewsListViewModel @Inject constructor(private val repository: NewsRepository) : BaseViewModel() {
+
     private val newsDataSourceFactory: NewsDataSourceFactory
     private val compositeDisposable = CompositeDisposable()
 

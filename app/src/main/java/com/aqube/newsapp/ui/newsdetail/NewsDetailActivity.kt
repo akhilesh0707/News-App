@@ -10,7 +10,6 @@ import com.aqube.newsapp.R
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 
-
 class NewsDetailActivity : BaseActivity() {
 
     private var URL: String? = null
@@ -18,14 +17,25 @@ class NewsDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_detail)
+        setupToolBar()
+        bindWebView()
+    }
+
+    /**
+     * Setting up the toolbar to show back arrow and back functionality
+     */
+    private fun setupToolBar() {
         val toolBar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolBar)
         supportActionBar?.title = getString(R.string.app_name)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        bindWebView()
     }
 
+    /**
+     * Checking the back click and returning to previous activity
+     * @param item : MenuItem
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
@@ -33,42 +43,24 @@ class NewsDetailActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    /**
+     * Setting up the WebView and getting the URL from intent and loading the url to WebView
+     */
     fun bindWebView() {
         val receivedIntent = intent
         URL = receivedIntent.getStringExtra(NEWS_URL)
+        // If URL is null return to previous screen
         if (URL == null) {
             finish()
         }
-
+        // Setting WebClient to WebView
         webview.webViewClient = NewsWebClient()
+        // Setting WebChromeClient to WebView
         webview.webChromeClient = NewsChromeClient(progress_bar)
         webview.settings.loadsImagesAutomatically = true
         webview.settings.javaScriptEnabled = true
         webview.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
+        // Loading URL to WebView
         webview.loadUrl(URL)
-    }
-
-    override fun onBackPressed() {
-        if (webview.canGoBack()) {
-            webview.goBack()
-        } else {
-            super.onBackPressed()
-        }
-    }
-
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (event.action == KeyEvent.ACTION_DOWN) {
-            when (keyCode) {
-                KeyEvent.KEYCODE_BACK -> {
-                    if (webview.canGoBack()) {
-                        webview.goBack()
-                    } else {
-                        onBackPressed()
-                    }
-                    return true
-                }
-            }
-        }
-        return super.onKeyDown(keyCode, event)
     }
 }

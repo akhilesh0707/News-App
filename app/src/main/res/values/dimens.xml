@@ -2,4 +2,9 @@
 <resources>
     <dimen name="activity_default_padding">16dp</dimen>
     <dimen name="auth_logo_height_width">200dp</dimen>
+    <dimen name="news_img_height">200dp</dimen>
+    <dimen name="padding_2">2dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="padding_8">8dp</dimen>
 </resources>
