@@ -13,14 +13,21 @@ import com.aqube.newsapp.util.PAGE_SIZE
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-
-class NewsListViewModel @Inject constructor(private val repository: NewsRepository) : BaseViewModel() {
+/**
+ * NewsListViewModel is used to get the data from repository and pass the data in the form of LiveData to view
+ */
+class NewsListViewModel @Inject constructor(private val repository: NewsRepository) :
+    BaseViewModel() {
 
     private val newsDataSourceFactory: NewsDataSourceFactory
     private val compositeDisposable = CompositeDisposable()
 
     var newsList: LiveData<PagedList<News>>
 
+    /**
+     * Init creating the NewsDataSource object and setting up the NewsDataSourceFactory
+     * Setting Pagination library to load news based on page size and other params
+     */
     init {
         newsDataSourceFactory = NewsDataSourceFactory(compositeDisposable, repository)
         val config = PagedList.Config.Builder()
@@ -31,12 +38,18 @@ class NewsListViewModel @Inject constructor(private val repository: NewsReposito
         newsList = LivePagedListBuilder<Int, News>(newsDataSourceFactory, config).build()
     }
 
+    /**
+     * getState is used to set the network status like loading fail or loaded
+     */
     fun getState(): LiveData<NetworkState> =
         Transformations.switchMap<NewsDataSource, NetworkState>(
             newsDataSourceFactory.newsDataSourceLiveData,
             NewsDataSource::networkState
         )
 
+    /**
+     * Called when the ViewModel is being destroyed we are disposing all the RX subscription
+     */
     override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()

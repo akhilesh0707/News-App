@@ -11,6 +11,9 @@ import com.aqube.newsapp.util.FIRST_PAGE
 import com.aqube.newsapp.util.PAGE_SIZE
 import io.reactivex.disposables.CompositeDisposable
 
+/**
+ * NewsDataSource is used to load the data based on current page size and managing the load more data from repository api
+ */
 class NewsDataSource(
     private val compositeDisposable: CompositeDisposable,
     private val repository: NewsRepository
@@ -18,6 +21,11 @@ class NewsDataSource(
 
     var networkState: MutableLiveData<NetworkState> = MutableLiveData()
 
+    /**
+     * When loading first time
+     * @param params : we can get the params like number of page other detail
+     * @param callback : is used to return the data and pass the current page and key to load more
+     */
     override fun loadInitial(
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<Int, News>
@@ -43,6 +51,11 @@ class NewsDataSource(
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, News>) {}
 
+    /**
+     * Load after is used to load more data when user is scrolled the page
+     * @param params : Get the parameters like current page number and other detail
+     * @param callback : is used to return the data and pass the current page and key to load more
+     */
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, News>) {
         val currentCount = params.key
         updateState(NetworkState.LOADING)
@@ -67,10 +80,20 @@ class NewsDataSource(
         )
     }
 
+    /**
+     * Updating the network status on LiveData
+     * @param state : NetworkState loaded, loading or failed
+     */
     private fun updateState(state: NetworkState) {
         this.networkState.postValue(state)
     }
 
+    /**
+     * Check is last page is loaded or not
+     * @param totalRecord : Total number of news
+     * @param currentPage : Current page load
+     * @return is loading required or not
+     */
     private fun loadMore(totalRecord: Int, currentPage: Int): Boolean {
         val totalPage = (totalRecord / PAGE_SIZE)
         return totalPage > currentPage

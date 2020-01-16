@@ -21,6 +21,9 @@ import kotlinx.android.synthetic.main.activity_news_list.progress_bar
 import kotlinx.android.synthetic.main.activity_news_list.recycler_view
 import javax.inject.Inject
 
+/**
+ * NewsListActivity is used to display the news list
+ */
 class NewsListActivity : BaseActivity() {
 
     @Inject

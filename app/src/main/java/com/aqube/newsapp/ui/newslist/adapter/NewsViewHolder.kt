@@ -9,8 +9,18 @@ import com.aqube.newsapp.model.News
 import com.bumptech.glide.RequestManager
 import kotlinx.android.synthetic.main.item_news.view.*
 
+/**
+ * NewViewHolder to bind news into view
+ * @param view: selected view
+ */
 class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+    /**
+     * Bind news detail to view and loading image to ImageView
+     * @param news : news object
+     * @param requestManager : used to load image on ImageView
+     * @param clickListener : Item click listener object
+     */
     fun bind(news: News?, requestManager: RequestManager, clickListener: (News) -> Unit) {
         if (news != null) {
             itemView.txt_news_name.text = news.title
@@ -21,6 +31,10 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         }
     }
 
+    /**
+     * Inflating view xml to NewsViewHolder and return NewsViewHolder
+     * @return : NewsViewHolder
+     */
     companion object {
         fun create(parent: ViewGroup): NewsViewHolder {
             val view =

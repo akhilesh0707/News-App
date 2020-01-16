@@ -10,11 +10,21 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
+/**
+ * NewsRepository is used to load the news from api call
+ */
 class NewsRepository @Inject constructor() {
 
     @Inject
     lateinit var newsListApi: NewsListApi
 
+    /**
+     * Loading the news from API call
+     * @param pageSize : number of item to load
+     * @param currentPage : current number of page to load
+     * @param responseHandler : callback object to return data
+     * @param compositeDisposable : to add the subscription dispose object and destroy the subscription when ViewModel is destroy
+     */
     fun getNewsList(
         pageSize: Int,
         currentPage: Int,

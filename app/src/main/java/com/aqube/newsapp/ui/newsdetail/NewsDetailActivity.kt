@@ -1,7 +1,6 @@
 package com.aqube.newsapp.ui.newsdetail
 
 import android.os.Bundle
-import android.view.KeyEvent
 import android.view.View
 import com.aqube.newsapp.base.BaseActivity
 import com.aqube.newsapp.util.NEWS_URL
@@ -10,6 +9,9 @@ import com.aqube.newsapp.R
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 
+/**
+ * NewsDetailActivity is used to show news detail on web page (WebView)
+ */
 class NewsDetailActivity : BaseActivity() {
 
     private var URL: String? = null
