@@ -8,6 +8,6 @@ data class NewsResponse(
     var status: String? = null,
     @SerializedName("totalResults")
     var totalResults: Int,
-    @SerializedName("news")
+    @SerializedName("articles")
     var news: List<News>
 ) : Model
