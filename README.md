@@ -17,6 +17,8 @@ The News app for daily news & trending news using MVVM architecture, Jetpack com
 - RxJava 2 - reactive programming paradigm
 - LiveData - use LiveData to see UI update with data changes.
 - Pagination - to endless scrolling
+- Robolectric - to write test cases for activity
+- Mockito and PowerMockito - to write test cases for ViewModel and Repository
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
