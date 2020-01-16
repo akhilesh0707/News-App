@@ -4,6 +4,8 @@ A news app which fetches news from an open source News Api
 [![Akhilesh StackOverflow](https://img.shields.io/badge/Akhilesh-StackOverflow-orange.svg?style=for-the-badge)](https://stackoverflow.com/users/1548824/akhilesh0707)
 [![Akhilesh LinkedIn](https://img.shields.io/badge/Akhilesh-LinkedIn-blue.svg?style=for-the-badge)](https://www.linkedin.com/in/akhilesh0707/)
 
+![news app](https://media.giphy.com/media/lT4vKqBmW5h8CdjjUX/giphy.gif)
+
 ## Description
 The News app for daily news & trending news using MVVM architecture, Jetpack component, Dagger 2, RxJava, Retrofit, Glide and pagination. It connects to the [News Api](https://newsapi.org/) API and fetch top news.
 
