@@ -24,7 +24,7 @@ class NewsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(news: News?, requestManager: RequestManager, clickListener: (News) -> Unit) {
         if (news != null) {
             itemView.txt_news_name.text = news.title
-            requestManager.load(news.urlToImage).into(itemView.img_news_banner)
+            requestManager.load(news.urlToImage)?.into(itemView.img_news_banner)
             itemView.text_view_source.text =
                 itemView.resources.getString(R.string.label_source) + news.source?.name
             itemView.setOnClickListener { clickListener(news) }

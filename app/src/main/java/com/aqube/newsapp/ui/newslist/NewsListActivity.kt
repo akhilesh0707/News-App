@@ -80,7 +80,7 @@ class NewsListActivity : BaseActivity() {
      * RecyclerView item click listener and start a NewsDetailActivity
      * @param news : News selected
      */
-    private fun itemClicked(news: News) {
+    fun itemClicked(news: News) {
         val intent = Intent(this@NewsListActivity, NewsDetailActivity::class.java)
         intent.putExtra(NEWS_URL, news.url)
         startActivity(intent)
